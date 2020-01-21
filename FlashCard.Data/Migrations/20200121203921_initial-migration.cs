@@ -1,18 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FlashCard.Data.Migrations
 {
-    public partial class flashcardmigration : Migration
+    public partial class initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateSequence<int>(
+                name: "QuestionId",
+                startValue: 2L);
+
             migrationBuilder.CreateTable(
                 name: "Questions",
                 columns: table => new
                 {
-                    QuestionId = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    QuestionId = table.Column<int>(nullable: false, defaultValueSql: "nextval('\"QuestionId\"')"),
                     QuestionText = table.Column<string>(nullable: true),
                     Subject = table.Column<string>(nullable: true),
                     Difficulty = table.Column<int>(nullable: false),
@@ -33,6 +35,9 @@ namespace FlashCard.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Questions");
+
+            migrationBuilder.DropSequence(
+                name: "QuestionId");
         }
     }
 }
