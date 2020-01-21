@@ -20,25 +20,42 @@ namespace FlashCard.Service.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllCards()
         {
-          // Question quest = new Question();
-          // quest.QuestionId = 1;
-          // quest.QuestionText = "Test Question?";
-          // quest.Subject = "Test";
-          // quest.Difficulty = 1;
-          // quest.Answer = "Good";
           return await Task.FromResult(Ok(_db.Questions.ToList()));
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCard(int id)
         {
+          Question q = _db.Questions.Where(q => q.QuestionId == id).FirstOrDefault();
+          if(q != null)
+          {
+            _db.Questions.Remove(q);
+            _db.SaveChanges();
             return await Task.FromResult(Ok(_db.Questions.FirstOrDefault(q => q.QuestionId == id)));
+          }
+          return await Task.FromResult(BadRequest($"Card #{id} not found"));
         }
         [HttpPost]
         public async Task<IActionResult> Post(Question q)
         {
-          _db.Questions.Add(q);
-          _db.SaveChanges();
-          return await Task.FromResult(Ok(q));
+          if(ModelState.IsValid)
+          {
+            _db.Questions.Add(q);
+            _db.SaveChanges();
+            return await Task.FromResult(Ok(q));
+          }
+          return await Task.FromResult(BadRequest(q));
+        }
+        [HttpPost("{id}")]
+        public async Task<IActionResult> DeleteCard(int id)
+        {
+          Question q = _db.Questions.Where(q => q.QuestionId == id).FirstOrDefault();
+          if(q != null)
+          {
+            _db.Questions.Remove(q);
+            _db.SaveChanges();
+            return await Task.FromResult(Ok($"Deleted card #{id}"));
+          }
+          return await Task.FromResult(BadRequest($"Card #{id} not found"));
         }
     }
 }
