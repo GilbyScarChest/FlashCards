@@ -8,12 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { FlashcardComponent } from './flashcard/flashcard.component';
+import { CardMenuComponent } from './card-menu/card-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    FlashcardComponent
+    FlashcardComponent,
+    CardMenuComponent
   ],
   imports: [
     BrowserModule,

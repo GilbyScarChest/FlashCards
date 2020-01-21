@@ -1,0 +1,9 @@
+.mat-icon-button {
+    display: block;
+    margin-top: 10px;
+    padding: .5vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    background-color: white;
+    border-radius: 5px 30px 30px 5px;
+}

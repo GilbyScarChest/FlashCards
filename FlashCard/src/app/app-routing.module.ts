@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FlashcardComponent } from './flashcard/flashcard.component';
+import { CardMenuComponent } from './card-menu/card-menu.component';
 
 
 const routes: Routes = [
-    {path: 'flashcard', component: FlashcardComponent}
+    {path: 'flashcard', component: FlashcardComponent},
+    {path: 'card-menu', component: CardMenuComponent}
 ];
 
 @NgModule({
