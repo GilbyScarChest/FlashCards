@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashCard.Client", "FlashCard.Client\FlashCard.Client.csproj", "{3232A7FE-09E0-4F1E-AABA-1E3A27F94C6B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashCard.Data", "FlashCard.Data\FlashCard.Data.csproj", "{8C48BCC6-9CB9-45D2-88F2-7F75BAFFB4BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashCard.Service", "FlashCard.Service\FlashCard.Service.csproj", "{62219B6C-9A50-4851-B14F-F232E462E5DD}"

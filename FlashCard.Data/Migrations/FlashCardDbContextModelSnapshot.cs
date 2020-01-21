@@ -16,14 +16,15 @@ namespace FlashCard.Data.Migrations
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63)
+                .HasAnnotation("Relational:Sequence:.QuestionId", "'QuestionId', '', '2', '1', '', '', 'Int32', 'False'");
 
             modelBuilder.Entity("FlashCard.Data.Models.Question", b =>
                 {
                     b.Property<int>("QuestionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasDefaultValueSql("nextval('\"QuestionId\"')");
 
                     b.Property<string>("Answer")
                         .HasColumnType("text");

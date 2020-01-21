@@ -15,8 +15,9 @@ namespace FlashCard.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasSequence<int>("QuestionId").StartsAt(2).IncrementsBy(1);
             modelBuilder.Entity<Question>(o => o.HasKey(k => k.QuestionId));
-            modelBuilder.Entity<Question>().Property(p => p.QuestionId).UseIdentityByDefaultColumn();
+            modelBuilder.Entity<Question>().Property(p => p.QuestionId).HasDefaultValueSql("nextval('\"QuestionId\"')");
 
             modelBuilder.Entity<Question>().HasData(new Question() 
             {
