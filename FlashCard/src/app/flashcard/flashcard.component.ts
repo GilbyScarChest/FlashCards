@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlashcardComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit() {
   }
 
+    mode = 'flashcard';
+
+    changeMode(reqMode: any) {
+        console.log('mode =', reqMode);
+        this.mode = reqMode;
+    }
+  
 }
+
+
