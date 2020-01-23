@@ -7,7 +7,8 @@ using FlashCard.Data.Models;
 namespace FlashCard.Service.Controllers
 {
     [Produces("application/json")]
-    [Route("/app/[controller]/[action]")]
+    [Consumes("application/json")]
+    [Route("/api/[controller]/[action]")]
     [ApiController]
     public class FlashCardController : ControllerBase
     {
@@ -17,13 +18,25 @@ namespace FlashCard.Service.Controllers
         {
             _db = dbContext;
         }
+        /// <summary>
+        /// Get all FlashCards
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetAllCards()
+        public async Task<IActionResult> GetAll()
         {
-          return await Task.FromResult(Ok(_db.Questions.ToList()));
+          var cards = _db.Questions.ToList();
+          if(cards.Count != 0)
+            return await Task.FromResult(Ok(cards));
+          return await Task.FromResult(NoContent());
         }
+        /// <summary>
+        /// Get specified FlashCard
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCard(int id)
+        public async Task<IActionResult> Get(int id)
         {
           Question q = _db.Questions.Where(q => q.QuestionId == id).FirstOrDefault();
           if(q != null)
@@ -34,6 +47,11 @@ namespace FlashCard.Service.Controllers
           }
           return await Task.FromResult(BadRequest($"Card #{id} not found"));
         }
+        /// <summary>
+        /// Post a FlashCard
+        /// </summary>
+        /// <param name="q"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Post(Question q)
         {
@@ -45,17 +63,21 @@ namespace FlashCard.Service.Controllers
           }
           return await Task.FromResult(BadRequest(q));
         }
-        [HttpPost("{id}")]
-        public async Task<IActionResult> DeleteCard(int id)
+        /// <summary>
+        /// Deletes a specific FlashCard
+        /// </summary>
+        /// <param name="id"></param>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
-          Question q = _db.Questions.Where(q => q.QuestionId == id).FirstOrDefault();
+          Question q = _db.Questions.Find(id);
           if(q != null)
           {
             _db.Questions.Remove(q);
             _db.SaveChanges();
-            return await Task.FromResult(Ok($"Deleted card #{id}"));
+            return await Task.FromResult(NoContent());
           }
-          return await Task.FromResult(BadRequest($"Card #{id} not found"));
+          return await Task.FromResult(NotFound());
         }
     }
 }
