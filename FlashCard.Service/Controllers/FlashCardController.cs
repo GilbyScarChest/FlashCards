@@ -27,7 +27,10 @@ namespace FlashCard.Service.Controllers
         {
           var cards = _db.Questions.ToList();
           if(cards.Count != 0)
+          {
+            // randomize cards
             return await Task.FromResult(Ok(cards));
+          }
           return await Task.FromResult(NoContent());
         }
         /// <summary>
@@ -41,8 +44,6 @@ namespace FlashCard.Service.Controllers
           Question q = _db.Questions.Where(q => q.QuestionId == id).FirstOrDefault();
           if(q != null)
           {
-            _db.Questions.Remove(q);
-            _db.SaveChanges();
             return await Task.FromResult(Ok(_db.Questions.FirstOrDefault(q => q.QuestionId == id)));
           }
           return await Task.FromResult(BadRequest($"Card #{id} not found"));
