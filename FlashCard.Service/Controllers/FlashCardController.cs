@@ -38,14 +38,12 @@ namespace FlashCard.Service.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-          Question q = _db.Questions.Where(q => q.QuestionId == id).FirstOrDefault();
+          Question q = _db.Questions.Find(id);
           if(q != null)
           {
-            _db.Questions.Remove(q);
-            _db.SaveChanges();
-            return await Task.FromResult(Ok(_db.Questions.FirstOrDefault(q => q.QuestionId == id)));
+            return await Task.FromResult(Ok(q));
           }
-          return await Task.FromResult(BadRequest($"Card #{id} not found"));
+          return await Task.FromResult(NotFound());
         }
         /// <summary>
         /// Post a FlashCard
