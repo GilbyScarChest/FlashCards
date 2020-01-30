@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-card-menu',
@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardMenuComponent implements OnInit {
 
-  constructor() { }
+    @Output() modeOutput: EventEmitter<string> = new EventEmitter<string>();
 
-  ngOnInit() {
-  }
+    constructor() { }
+
+    ngOnInit() {
+    }
+
+    AddCard(): void {
+    console.log("Add Card");
+    this.modeOutput.emit('add-card');
+    }
+
+    EditCard(): void {
+    console.log("Edit Card");
+    this.modeOutput.emit('edit-card');
+    }
 
 }

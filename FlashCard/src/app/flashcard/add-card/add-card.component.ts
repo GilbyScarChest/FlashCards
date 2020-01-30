@@ -1,14 +1,14 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-answer',
-  templateUrl: './answer.component.html',
-  styleUrls: ['./answer.component.css']
+  selector: 'app-add-card',
+  templateUrl: './add-card.component.html',
+  styleUrls: ['./add-card.component.css']
 })
-export class AnswerComponent implements OnInit {
+export class AddCardComponent implements OnInit {
 
     @Output() modeOutput: EventEmitter<string> = new EventEmitter<string>();
-    
+
     constructor() { }
 
     ngOnInit() {

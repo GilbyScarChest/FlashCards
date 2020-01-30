@@ -1,10 +1,10 @@
 <div class="fcard">
-    <div class="display-4" style="display: inline;">Subject</div>
+    <div class="display-4" style="display: inline;">{{Subject}}</div>
     <div class="" style="display: inline; float: right;">
-        <strong>Difficulty: </strong><span class="display-4">1</span>
+        <strong>Difficulty: </strong><span class="display-4">{{Difficulty}}</span>
     </div>
     <div class="m-0 p-3">
-        <h4 style="color: rgb(29, 187, 29);">The Answer goes here!</h4>
+        <h4 style="color: rgb(29, 187, 29);">{{Answer}}</h4>
     </div>
     <button (click)="BackToSameCard()" class="nxtbtn">Next Card</button>
     <button (click)="BackToSameCard()" class="backbtn">Back</button>

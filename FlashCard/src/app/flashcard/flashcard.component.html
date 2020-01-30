@@ -1,19 +1,21 @@
 
 <div class="row">
     <div class="col-md-3">
-        <app-card-menu></app-card-menu>
+        <app-card-menu (modeOutput)="changeMode($event)"></app-card-menu>
     </div>
     <div class="col-md-9 m-0 p-0">
         <div *ngIf="mode == 'flashcard'" class="fcard">
-            <div class="display-4" style="display: inline;">Subject</div>
+            <div class="display-4" style="display: inline;">{{Subject}}</div>
             <div class="" style="display: inline; float: right;">
-                <strong>Difficulty: </strong><span class="display-4">1</span>
+                <strong>Difficulty: </strong><span class="display-4">{{Difficulty}}</span>
             </div>
             <div class="m-0 p-3">
-                <p>The question goes here in this box!</p>
+                <p>{{QuestionText}}</p>
             </div>
             <button (click)="changeMode('answer')" class="nxtbtn">Answer</button>
         </div>
         <app-answer *ngIf="mode == 'answer'" (modeOutput)="changeMode($event)"></app-answer>
+        <app-add-card *ngIf="mode == 'add-card'" (modeOutput)="changeMode($event)"></app-add-card>
+        <app-edit-card *ngIf="mode == 'edit-card'" (modeOutput)="changeMode($event)"></app-edit-card>
     </div>
 </div>    

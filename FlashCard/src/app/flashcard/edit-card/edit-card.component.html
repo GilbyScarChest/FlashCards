@@ -1,0 +1,26 @@
+<div class="col-md-9 m-0 p-0">
+    <div class="fcard">
+        <form class="m-0 p-0">
+            <mat-form-field>
+                <input matInput placeholder="Edit Subject" style="display: inline;">
+            </mat-form-field>
+            <mat-form-field style="float: right;">
+                <div class="" style="display: inline; float: right;">
+                    <input matInput placeholder="Edit Difficulty" value="1">
+                </div>
+            </mat-form-field>
+            <mat-form-field style="display: inline;">
+                <div class="">
+                    <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize"cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" matInput placeholder="Edit Question"></textarea>
+                </div>
+            </mat-form-field>
+            <mat-form-field style="display: inline;">
+                <div class="">
+                    <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize"cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" matInput placeholder="Edit Answer"></textarea>
+                </div>
+            </mat-form-field>
+            <button type="submit" class="nxtbtn">Submit</button>
+        </form>
+        <button (click)="BackToSameCard()" class="backbtn">Back</button>
+    </div>
+</div>

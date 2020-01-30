@@ -6,10 +6,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { FlashcardComponent } from './flashcard/flashcard.component';
 import { CardMenuComponent } from './flashcard/card-menu/card-menu.component';
 import { AnswerComponent } from './flashcard/answer/answer.component';
+import { AddCardComponent } from './flashcard/add-card/add-card.component';
+import { EditCardComponent } from './flashcard/edit-card/edit-card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,14 +22,19 @@ import { AnswerComponent } from './flashcard/answer/answer.component';
     NavbarComponent,
     FlashcardComponent,
     CardMenuComponent,
-    AnswerComponent
+    AnswerComponent,
+    AddCardComponent,
+    EditCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
