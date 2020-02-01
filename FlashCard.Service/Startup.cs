@@ -1,6 +1,7 @@
 using FlashCard.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,6 +11,7 @@ namespace FlashCard.Service
 {
     public class Startup
     {
+        private const string CorsPolicyName = "FlashcardCorsPolicy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -20,6 +22,17 @@ namespace FlashCard.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+              options.AddPolicy(CorsPolicyName, builder => {
+                builder.WithOrigins("http://localhost:4200",
+                                    "https://localhost:4200")
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod()
+                                    .AllowAnyOrigin();
+              });
+            });
+
             services.AddControllers();
             services.AddDbContext<FlashCardDbContext>();
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -37,9 +50,13 @@ namespace FlashCard.Service
                 app.UseDeveloperExceptionPage();
             }
 
+            UpdateDatabase(app);
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(CorsPolicyName);
 
             app.UseAuthorization();
 
@@ -57,6 +74,17 @@ namespace FlashCard.Service
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "FlashCard API V1");
             });
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<FlashCardDbContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }

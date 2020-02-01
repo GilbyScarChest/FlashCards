@@ -10,7 +10,7 @@ export class FlashcardserviceService {
 
   constructor(private http: HttpClient) {}
 
-  baseUrl: string = 'localhost:5000';
+  baseUrl: string = 'https://localhost:5001';
 
   headerOptions = {
       headers: new HttpHeaders({          
@@ -19,7 +19,7 @@ export class FlashcardserviceService {
   };
 
   getAllFlashCards$(): Observable<Question> {
-      return this.http.get<Question>(`${this.baseUrl}/api/flashcards/get/1`, this.headerOptions)
+      return this.http.get<Question>(`${this.baseUrl}/api/flashcard/get/1`, this.headerOptions)
   }
 
 
