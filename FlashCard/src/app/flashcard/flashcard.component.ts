@@ -9,29 +9,34 @@ import { FlashcardserviceService } from './flashcardservice.service';
 })
 export class FlashcardComponent implements OnInit {
 
+  question: Question;
+  id: number;
+  mode = 'flashcard';
 
   constructor(private flashCard: FlashcardserviceService) { }
 
   ngOnInit() {
-
-    this.flashCard.getAllFlashCards$().subscribe((data: Question) => this.question = {
-            
-        QuestionId: (data as any).QuestionId,
-        Subject: (data as any).Subject,
-        Difficulty: (data as any).Difficulty,
-        QuestionText: (data as any).QuestionText,
-        Answer: (data as any).Answer
-
-    });
+    this.flashCard.getAllFlashCards$().subscribe(
+      (resp: Question) => {
+        this.question = resp
+      }
+    );
+    console.log(this.question)
   }
 
-    mode = 'flashcard';
-    question: Question;
+  changeMode(reqMode: any) {
+      console.log('mode =', reqMode);
+      this.mode = reqMode;
+  }
 
-    changeMode(reqMode: any) {
-        console.log('mode =', reqMode);
-        this.mode = reqMode;
-    }
+  printQuestion() {
+    this.flashCard.getAllFlashCards$().subscribe(
+      (resp: Question) => {
+        this.question = resp
+      }
+    );
+    console.log(this.question);
+  }
 
 }
 

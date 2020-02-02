@@ -5,17 +5,18 @@
     </div>
     <div class="col-md-9 m-0 p-0">
         <div *ngIf="mode == 'flashcard'" class="fcard">
-            <div class="display-4" style="display: inline;">{{Subject}}</div>
+            <div class="display-4" style="display: inline;">{{question.subject}}</div>
             <div class="" style="display: inline; float: right;">
-                <strong>Difficulty: </strong><span class="display-4">{{Difficulty}}</span>
+                <strong>Difficulty: </strong><span class="display-4">{{question.difficulty}}</span>
             </div>
             <div class="m-0 p-3">
-                <p>{{QuestionText}}</p>
+                <p>{{question.questionText}}</p>
             </div>
             <button (click)="changeMode('answer')" class="nxtbtn">Answer</button>
+            <!-- <button (click)="printQuestion()" class="">Question</button> -->
         </div>
         <app-answer *ngIf="mode == 'answer'" (modeOutput)="changeMode($event)"></app-answer>
         <app-add-card *ngIf="mode == 'add-card'" (modeOutput)="changeMode($event)"></app-add-card>
         <app-edit-card *ngIf="mode == 'edit-card'" (modeOutput)="changeMode($event)"></app-edit-card>
     </div>
-</div>    
+</div>

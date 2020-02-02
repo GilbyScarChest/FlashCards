@@ -1,7 +1,7 @@
 export interface Question {
-    QuestionId: number;
-    QuestionText: string;
-    Subject: string;
-    Difficulty: number;
-    Answer: string;
+    questionId: number;
+    questionText: string;
+    subject: string;
+    difficulty: number;
+    answer: string;
 }
