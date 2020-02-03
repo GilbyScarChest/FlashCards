@@ -15,7 +15,7 @@
             <button (click)="changeMode('answer')" class="nxtbtn">Answer</button>
             <!-- <button (click)="printQuestion()" class="">Question</button> -->
         </div>
-        <app-answer *ngIf="mode == 'answer'" (modeOutput)="changeMode($event)"></app-answer>
+        <app-answer *ngIf="mode == 'answer'" (modeOutput)="changeMode($event)" [currentQuestion]="question"></app-answer>
         <app-add-card *ngIf="mode == 'add-card'" (modeOutput)="changeMode($event)"></app-add-card>
         <app-edit-card *ngIf="mode == 'edit-card'" (modeOutput)="changeMode($event)"></app-edit-card>
     </div>

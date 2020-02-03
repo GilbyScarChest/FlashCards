@@ -1,4 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Question } from 'src/Interfaces/Question';
 
 @Component({
   selector: 'app-answer',
@@ -6,12 +7,13 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./answer.component.css']
 })
 export class AnswerComponent implements OnInit {
-
+    @Input() currentQuestion: Question;
     @Output() modeOutput: EventEmitter<string> = new EventEmitter<string>();
-    
+
     constructor() { }
 
     ngOnInit() {
+      console.log(this.currentQuestion);
     }
 
     BackToSameCard(): void {
