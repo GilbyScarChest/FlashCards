@@ -65,7 +65,27 @@ namespace FlashCard.Service.Controllers
           return await Task.FromResult(BadRequest(q));
         }
         /// <summary>
-        /// Deletes a specific FlashCard
+        /// Update the specified FlashCard
+        /// </summary>
+        /// <param name="q"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public async Task<IActionResult> Update(Question q)
+        {
+          if(ModelState.IsValid)
+          {
+            var question = _db.Questions.Find(q.QuestionId);
+            if(question == null)
+              return await Task.FromResult(NotFound());
+            // _db.Questions.Update(q);
+            question = q;
+            _db.SaveChanges();
+            return await Task.FromResult(Ok(q));
+          }
+          return await Task.FromResult(BadRequest(q));
+        }
+        /// <summary>
+        /// Delete a specific FlashCard
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("{id}")]
@@ -80,5 +100,6 @@ namespace FlashCard.Service.Controllers
           }
           return await Task.FromResult(NotFound());
         }
+        
     }
 }
