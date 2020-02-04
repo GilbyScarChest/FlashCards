@@ -12,15 +12,13 @@ export class FlashcardserviceService {
 
   baseUrl: string = 'https://localhost:5001';
 
-  headerOptions = {
-      headers: new HttpHeaders({          
-        'Access-Control-Allow-Origin':'*'
-      })
-  };
-
-  getAllFlashCards$(): Observable<Question> {
-      return this.http.get<Question>(`${this.baseUrl}/api/flashcard/get/1`, this.headerOptions)
+  getAllFlashCards$(): Observable<Question[]> {
+      return this.http.get<Question[]>(`${this.baseUrl}/api/flashcard/getall`)
   }
+
+  getFlashCard$(id: number): Observable<Question> {
+    return this.http.get<Question>(`${this.baseUrl}/api/flashcard/get/${id}`)
+}
 
 
 }

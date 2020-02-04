@@ -1,9 +1,8 @@
-
 <div class="row">
     <div class="col-md-3">
         <app-card-menu (modeOutput)="changeMode($event)"></app-card-menu>
     </div>
-    <div class="col-md-9 m-0 p-0">
+    <div class="col-md-6 m-0 p-0">
         <div *ngIf="mode == 'flashcard'" class="fcard">
             <div class="display-4" style="display: inline;">{{question.subject}}</div>
             <div class="" style="display: inline; float: right;">
@@ -13,10 +12,17 @@
                 <p>{{question.questionText}}</p>
             </div>
             <button (click)="changeMode('answer')" class="nxtbtn">Answer</button>
-            <!-- <button (click)="printQuestion()" class="">Question</button> -->
         </div>
         <app-answer *ngIf="mode == 'answer'" (modeOutput)="changeMode($event)" [currentQuestion]="question"></app-answer>
         <app-add-card *ngIf="mode == 'add-card'" (modeOutput)="changeMode($event)"></app-add-card>
-        <app-edit-card *ngIf="mode == 'edit-card'" (modeOutput)="changeMode($event)"></app-edit-card>
+        <app-edit-card *ngIf="mode == 'edit-card'" (modeOutput)="changeMode($event)" ></app-edit-card>
+    </div>
+    <div class="col-md-3 m-0 p-0 text-center">
+      All questions displayed here
+      <div *ngFor="let q of questions">
+        <button (click)="changeQuestion(q.questionId)">
+          question #{{q.questionId}}
+        </button>
+      </div>
     </div>
 </div>

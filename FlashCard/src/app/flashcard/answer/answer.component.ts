@@ -13,7 +13,7 @@ export class AnswerComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-      console.log(this.currentQuestion);
+      
     }
 
     BackToSameCard(): void {

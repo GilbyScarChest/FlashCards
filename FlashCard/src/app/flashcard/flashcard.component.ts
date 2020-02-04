@@ -10,32 +10,38 @@ import { FlashcardserviceService } from './flashcardservice.service';
 export class FlashcardComponent implements OnInit {
 
   question: Question;
+  questions: Question[];
   id: number;
   mode = 'flashcard';
 
   constructor(private flashCard: FlashcardserviceService) { }
 
   ngOnInit() {
-    this.flashCard.getAllFlashCards$().subscribe(
+    this.flashCard.getFlashCard$(1).subscribe(
       (resp: Question) => {
         this.question = resp
       }
     );
-    console.log(this.question)
+    this.flashCard.getAllFlashCards$().subscribe(
+      (resp: Question[]) => {
+        this.questions = resp
+      }
+    );
   }
 
   changeMode(reqMode: any) {
       console.log('mode =', reqMode);
       this.mode = reqMode;
+      console.log(this.questions);
   }
 
-  printQuestion() {
-    this.flashCard.getAllFlashCards$().subscribe(
+  changeQuestion(id: any) {
+    console.log(id);
+    this.flashCard.getFlashCard$(id).subscribe(
       (resp: Question) => {
         this.question = resp
       }
     );
-    console.log(this.question);
   }
 
 }
