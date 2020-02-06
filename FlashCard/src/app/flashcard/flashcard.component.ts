@@ -32,14 +32,20 @@ export class FlashcardComponent implements OnInit {
   changeMode(reqMode: any) {
       console.log('mode =', reqMode);
       this.mode = reqMode;
-      console.log(this.questions);
   }
 
   changeQuestion(id: any) {
-    console.log(id);
     this.flashCard.getFlashCard$(id).subscribe(
       (resp: Question) => {
         this.question = resp
+      }
+    );
+  }
+
+  refreshQuestions(): void {
+    this.flashCard.getAllFlashCards$().subscribe(
+      (resp: Question[]) => {
+        this.questions = resp
       }
     );
   }

@@ -15,6 +15,7 @@ import { AnswerComponent } from './flashcard/answer/answer.component';
 import { AddCardComponent } from './flashcard/add-card/add-card.component';
 import { EditCardComponent } from './flashcard/edit-card/edit-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

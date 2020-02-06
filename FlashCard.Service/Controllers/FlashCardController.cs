@@ -74,13 +74,15 @@ namespace FlashCard.Service.Controllers
         {
           if(ModelState.IsValid)
           {
-            var question = _db.Questions.Find(q.QuestionId);
+            Question question = _db.Questions.FirstOrDefault(quest => quest.QuestionId == q.QuestionId);
             if(question == null)
               return await Task.FromResult(NotFound());
-            // _db.Questions.Update(q);
-            question = q;
+            question.QuestionText = q.QuestionText;
+            question.Answer = q.Answer;
+            question.Subject = q.Subject;
+            question.Difficulty = q.Difficulty;
             _db.SaveChanges();
-            return await Task.FromResult(Ok(q));
+            return await Task.FromResult(NoContent());
           }
           return await Task.FromResult(BadRequest(q));
         }

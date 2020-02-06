@@ -2,24 +2,24 @@
     <div class="fcard">
         <form class="m-0 p-0">
             <mat-form-field>
-                <input matInput placeholder="Edit Subject" style="display: inline;">
+                <input matInput placeholder="Edit Subject" style="display: inline;" [(ngModel)]="currentQuestion.subject" name="subject">
             </mat-form-field>
             <mat-form-field style="float: right;">
                 <div class="" style="display: inline; float: right;">
-                    <input matInput placeholder="Edit Difficulty" value="1">
+                    <input matInput placeholder="Edit Difficulty" [(ngModel)]="currentQuestion.difficulty" name="difficulty">
                 </div>
             </mat-form-field>
             <mat-form-field style="display: inline;">
                 <div class="">
-                    <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize"cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" matInput placeholder="Edit Question"></textarea>
+                    <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize"cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" matInput placeholder="Edit Question" [(ngModel)]="currentQuestion.questionText" name="questionText"></textarea>
                 </div>
             </mat-form-field>
             <mat-form-field style="display: inline;">
                 <div class="">
-                    <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize"cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" matInput placeholder="Edit Answer"></textarea>
+                    <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize"cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" matInput placeholder="Edit Answer" [(ngModel)]="currentQuestion.answer" name="answer"></textarea>
                 </div>
             </mat-form-field>
-            <button type="submit" class="nxtbtn">Submit</button>
+            <button (click)="UpdateCard()" class="nxtbtn">Submit</button>
         </form>
         <button (click)="BackToSameCard()" class="backbtn">Back</button>
     </div>

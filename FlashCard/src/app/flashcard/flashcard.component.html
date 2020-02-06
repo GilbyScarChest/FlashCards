@@ -15,13 +15,15 @@
         </div>
         <app-answer *ngIf="mode == 'answer'" (modeOutput)="changeMode($event)" [currentQuestion]="question"></app-answer>
         <app-add-card *ngIf="mode == 'add-card'" (modeOutput)="changeMode($event)"></app-add-card>
-        <app-edit-card *ngIf="mode == 'edit-card'" (modeOutput)="changeMode($event)" ></app-edit-card>
+        <app-edit-card *ngIf="mode == 'edit-card'" (modeOutput)="changeMode($event)" [currentQuestion]="question"></app-edit-card>
     </div>
     <div class="col-md-3 m-0 p-0 text-center">
+      <button (click)="refreshQuestions()" style="background-color: yellowgreen;">Refresh Questions</button>
+      <br>
       All questions displayed here
       <div *ngFor="let q of questions">
         <button (click)="changeQuestion(q.questionId)">
-          question #{{q.questionId}}
+          QUESTION #{{q.questionId}}
         </button>
       </div>
     </div>

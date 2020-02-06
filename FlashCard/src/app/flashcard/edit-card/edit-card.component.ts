@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Question } from 'src/Interfaces/Question';
+import { FlashcardserviceService } from '../flashcardservice.service';
 
 @Component({
   selector: 'app-edit-card',
@@ -8,15 +10,22 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class EditCardComponent implements OnInit {
 
     @Output() modeOutput: EventEmitter<string> = new EventEmitter<string>();
-    
-    constructor() { }
+    @Input() currentQuestion: Question;
+
+    constructor(private service: FlashcardserviceService) { }
 
     ngOnInit() {
     }
 
     BackToSameCard(): void {
-    console.log("Back to Card");
-    this.modeOutput.emit('flashcard');
+      console.log("Back to Card");
+      this.modeOutput.emit('flashcard');
     }
 
+    UpdateCard(): void {
+      this.service.updateFlashcard$(this.currentQuestion).subscribe(
+        resp => console.log(resp)
+      );
+      this.modeOutput.emit('flashcard');
+    }
 }
