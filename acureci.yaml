@@ -1,5 +1,8 @@
 name: $(date:yyyyMMdd)$(rev:.rr) #20191209.00
 
+trigger:    # trigger the build when there is new code on master.
+  - master
+
 stages:
   - stage: compile
     jobs:
