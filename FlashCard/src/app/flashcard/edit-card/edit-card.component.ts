@@ -23,6 +23,7 @@ export class EditCardComponent implements OnInit {
     }
 
     UpdateCard(): void {
+      this.currentQuestion.difficulty*=1; // convert to number to avoid validation errors
       this.service.updateFlashcard$(this.currentQuestion).subscribe(
         resp => console.log(resp)
       );

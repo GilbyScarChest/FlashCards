@@ -26,6 +26,10 @@ export class FlashcardserviceService {
     return this.http.get<Question>(`${this.baseUrl}/api/flashcard/get/${id}`)
   }
 
+  postFlashcard$(q: Question): Observable<Question> {
+    return this.http.post<Question>(`${this.baseUrl}/api/flashcard/post`, q, this.httpOptions)
+  }
+
   updateFlashcard$(q: Question): Observable<Question> {
     return this.http.put<Question>(`${this.baseUrl}/api/flashcard/update`, q, this.httpOptions)
   }
