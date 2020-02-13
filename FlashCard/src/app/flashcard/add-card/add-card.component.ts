@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Question } from 'src/Interfaces/Question';
 import { FormControl } from '@angular/forms';
+import { FormGroup,FormControl,Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-add-card',
@@ -14,8 +15,14 @@ export class AddCardComponent implements OnInit {
     // question: Question = new FormControl('');
 
     constructor() {}
+    constructor(private formBuilder: FormBuilder) { }
 
     ngOnInit() {}
+    ngOnInit() {
+      this.form = this.formBuilder.group({
+        question: this.formBuilder.control('',Validators.required),
+      });
+    }
 
     BackToSameCard(): void {
         console.log("Back to Card");
