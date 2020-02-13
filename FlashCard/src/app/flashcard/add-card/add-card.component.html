@@ -1,10 +1,13 @@
 <div class="col-md-9 m-0 p-0">
     <div class="fcard">
+
         <form class="m-0 p-0" (ngSubmit)="AddFlashcard()">
             <mat-form-field>
                 <input matInput placeholder="Subject" style="display: inline;" [(ngModel)]="question.subject" name="subject" required>
             </mat-form-field>
             <mat-form-field style="float: right;">
+
+      
                 <div class="" style="display: inline; float: right;">
                     <input matInput placeholder="Difficulty" [(ngModel)]="question.difficulty" name="difficulty" required>
                 </div>
