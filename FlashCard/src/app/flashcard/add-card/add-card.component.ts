@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Question } from 'src/Interfaces/Question';
-import { FormControl } from '@angular/forms';
 import { FormGroup,FormControl,Validators, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -9,15 +8,14 @@ import { FormGroup,FormControl,Validators, FormBuilder } from '@angular/forms';
   styleUrls: ['./add-card.component.css']
 })
 export class AddCardComponent implements OnInit {
+  form: FormGroup;
 
     @Output() modeOutput: EventEmitter<string> = new EventEmitter<string>();
     @Input() question: Question;
     // question: Question = new FormControl('');
 
-    constructor() {}
     constructor(private formBuilder: FormBuilder) { }
 
-    ngOnInit() {}
     ngOnInit() {
       this.form = this.formBuilder.group({
         question: this.formBuilder.control('',Validators.required),
